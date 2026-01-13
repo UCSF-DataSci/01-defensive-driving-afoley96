@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Process UCSF email and create verification hash."""
 
-import sys
+import sys 
 import hashlib
 import re
 
