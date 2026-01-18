@@ -12,21 +12,24 @@ Add comments explaining each fix when you're done.
 def calculate_bmi(weight_kg, height_cm):
     """Calculate BMI from weight (kg) and height (cm)."""
     height_m = height_cm / 100
-    bmi = weight_kg / height_m
+    bmi = (weight_kg / (height_m ** 2))
+    # BUG: incorrect bmi calculation as bmi = weight/height_m
+    # FIX: added correct bmi calculation with exponent bmi = weight / (height ** 2)
     return bmi
 
 
 def get_risk_level(bmi):
     """Determine health risk level based on BMI."""
     if bmi < 18.5:
-        risk_lvl = "Moderate risk (underweight)"
+        risk_level = "Moderate risk (underweight)"
     elif bmi < 25:
-        risk_lvl = "Low risk (normal)"
+        risk_level = "Low risk (normal)"
     elif bmi < 30:
-        risk_lvl = "Moderate risk (overweight)"
+        risk_level = "Moderate risk (overweight)"
     else:
-        risk_lvl = "High risk (obese)"
-
+        risk_level = "High risk (obese)"
+# BUG: risk_level undefined due to incorrect spelling as risk_lvl
+# FIX: corrected spelling to risk_level
     return risk_level
 
 
@@ -37,11 +40,12 @@ def analyze_patient_data(patients):
 
     results = []
 
-    for i in range(len(patients) - 1):
+    for i in range(len(patients)):
         name, weight, height = patients[i]
         bmi = calculate_bmi(weight, height)
         risk = get_risk_level(bmi)
-
+# BUG: incorrect loop parameter 1 less than number of patients with range(len(patients) -1)
+# FIX: corrected to range(len(patients))
         results.append({
             "name": name,
             "bmi": round(bmi, 1),
